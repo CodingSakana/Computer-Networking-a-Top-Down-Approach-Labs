@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>建筑艺术之美</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* 导航栏 */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #f1c40f;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-top: 60px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1.5s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.5s ease;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #f1c40f;
+            color: #333;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeIn 2s ease;
+        }
+        
+        .btn:hover {
+            background: #f39c12;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* 建筑风格部分 */
+        .styles {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: #f1c40f;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .styles-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .style-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .style-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .style-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .style-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .style-card:hover .style-img img {
+            transform: scale(1.1);
+        }
+        
+        .style-content {
+            padding: 1.5rem;
+        }
+        
+        .style-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .style-content p {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+        
+        /* 著名建筑师部分 */
+        .architects {
+            padding: 5rem 0;
+            background-color: #f9f9f9;
+        }
+        
+        .architects-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .architect-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .architect-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .architect-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1rem;
+            border: 5px solid #f1c40f;
+        }
+        
+        .architect-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .architect-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .architect-card p {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        /* 联系部分 */
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+        }
+        
+        .contact-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-info h3, .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contact-info h3::after, .contact-form h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: #f1c40f;
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .contact-info p {
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            margin-top: 2rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #f1c40f;
+            transform: translateY(-5px);
+        }
+        
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.9);
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+        }
+        
+        .contact-form button {
+            background: #f1c40f;
+            color: #333;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form button:hover {
+            background: #f39c12;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        /* 动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">建筑艺术</div>
+            <nav>
+                <ul>
+                    <li><a href="#styles">建筑风格</a></li>
+                    <li><a href="#architects">著名建筑师</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>探索建筑的无尽魅力</h1>
+            <p>建筑不仅是遮风挡雨的居所，更是人类文明的见证，艺术的结晶，时代的印记。</p>
+            <a href="#styles" class="btn">探索更多</a>
+        </div>
+    </section>
+    
+    <!-- 建筑风格部分 -->
+    <section class="styles" id="styles">
+        <div class="section-title">
+            <h2>经典建筑风格</h2>
+        </div>
+        <div class="styles-container">
+            <div class="style-card">
+                <div class="style-img">
+                    <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="古典主义建筑">
+                </div>
+                <div class="style-content">
+                    <h3>古典主义</h3>
+                    <p>古典主义建筑源于古希腊和古罗马，强调对称、比例和几何形状的完美。柱式是其最显著的特征。</p>
+                </div>
+            </div>
+            
+            <div class="style-card">
+                <div class="style-img">
+                    <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="哥特式建筑">
+                </div>
+                <div class="style-content">
+                    <h3>哥特式</h3>
+                    <p>哥特式建筑以尖拱、飞扶壁和彩色玻璃窗为特色，垂直的线条营造出向上升腾的视觉效果。</p>
+                </div>
+            </div>
+            
+            <div class="style-card">
+                <div class="style-img">
+                    <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="现代主义建筑">
+                </div>
+                <div class="style-content">
+                    <h3>现代主义</h3>
+                    <p>现代主义建筑强调功能主义，摒弃多余的装饰，使用新材料如钢铁、玻璃和混凝土，追求"形式追随功能"。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 著名建筑师部分 -->
+    <section class="architects" id="architects">
+        <div class="section-title">
+            <h2>著名建筑师</h2>
+        </div>
+        <div class="architects-container">
+            <div class="architect-card">
+                <div class="architect-img">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Ludwig_Mies_van_der_Rohe.jpg" alt="密斯·凡·德罗">
+                </div>
+                <h3>密斯·凡·德罗</h3>
+                <p>"少即是多"</p>
+                <p>现代主义建筑大师，设计了巴塞罗那德国馆和西格拉姆大厦。</p>
+            </div>
+            
+            <div class="architect-card">
+                <div class="architect-img">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Frank_Lloyd_Wright_portrait.jpg" alt="弗兰克·劳埃德·赖特">
+                </div>
+                <h3>弗兰克·劳埃德·赖特</h3>
+                <p>有机建筑之父</p>
+                <p>设计了流水别墅和古根海姆博物馆，强调建筑与自然的和谐。</p>
+            </div>
+            
+            <div class="architect-card">
+                <div class="architect-img">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Zaha_Hadid_at_the_2010_Time_100_Gala_crop.jpg" alt="扎哈·哈迪德">
+                </div>
+                <h3>扎哈·哈迪德</h3>
+                <p>解构主义女王</p>
+                <p>首位获得普利兹克建筑奖的女性，作品以流线型和未来感著称。</p>
+            </div>
+            
+            <div class="architect-card">
+                <div class="architect-img">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Ieoh_Ming_Pei_2012.jpg" alt="贝聿铭">
+                </div>
+                <h3>贝聿铭</h3>
+                <p>现代主义大师</p>
+                <p>设计了卢浮宫金字塔和苏州博物馆，融合东西方建筑美学。</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 联系部分 -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>联系我们</h3>
+                <p>如果您对建筑艺术感兴趣，或者有任何问题，欢迎随时联系我们。</p>
+                <p><i class="fas fa-map-marker-alt"></i> 北京市朝阳区建筑艺术中心</p>
+                <p><i class="fas fa-phone"></i> +86 10 12345678</p>
+                <p><i class="fas fa-envelope"></i> info@architecture-art.com</p>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>留言咨询</h3>
+                <form>
+                    <input type="text" placeholder="您的姓名" required>
+                    <input type="email" placeholder="您的邮箱" required>
+                    <input type="text" placeholder="主题">
+                    <textarea placeholder="您的留言"></textarea>
+                    <button type="submit">发送消息</button>
+                </form>
