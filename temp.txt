@@ -1,4 +1,4 @@
 Now im learning from a great tutorial about git.
 And now im going to change different things respectively in master branch and feature brand.
-ABCDEFG.
+abcdrfg.
 
